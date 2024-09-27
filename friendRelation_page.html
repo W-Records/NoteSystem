@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link href="Bootstrap5dist/css/bootstrap.min.css" rel="stylesheet"/>
+		<script src="js/jquery-3.6.0.js"></script>
+		<style>
+			
+			body{
+				/* filter: blur(6px);
+				background-color: white; */
+				transition: filter 0.7s, background-color 0.7s;
+			}
+			
+			.titleP{
+				/* border: solid; */
+				text-align: center;
+				
+				margin-top: 10vh;
+			}
+			.titleP>small{
+				font-size: 50px;
+				font-weight: 900;
+				font-family: "华文彩云";
+			}
+			.friend_area{
+				margin-top: 16vh;
+			}
+			.friendNode{
+				border: solid 1px #ffffff;
+				box-shadow: 2.5px 2.5px 6.5px #bebebe;
+				border-radius: 0.8vw;
+				height: 9vw;
+				
+				background: url("img/logowechat.png") no-repeat;
+				background-size: 7vw;
+				background-position: 100% 100%;
+			}
+			.friendNode>h4{
+				/* border: solid; */
+				padding-top: 1.2vw;
+				padding-left: 1.8vw;
+				color: #666;
+			}
+			.addFriendDIV{
+				/* border: solid; */
+				display: flex;
+				
+				position: fixed;
+				top: 30px;
+				right: 66px;
+			}
+			.addFriendDIV>img{
+				width: 55px;
+			}
+			
+			
+			#right_menu{
+				border: solid 1px #bfbfbf;
+				background-color: #ffffff;
+				box-shadow: 2.5px 2.5px 6.5px #bebebe;
+				
+				position: fixed;
+				
+				display: none;
+			}
+			#right_menu>img{
+				width: 30px;
+				position: absolute;
+				top: 50%;
+				left: 20px;
+				transform: translate(0px,-50%);
+				
+				z-index: -1;
+			}
+			#right_menu>h5{
+				/* border: solid; */
+				background-color: transparent;
+				color: #666;
+				margin: 0px;
+				padding: 20px;
+				padding-left: 55px;
+			}
+			
+			
+			
+			
+			#addPart{
+				border: solid 0.5px #d8d8d8;
+				box-shadow: 2.5px 2.5px 6.5px #bebebe;
+				width: 32vw;
+				
+				background-color: white;
+				
+				
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				
+				
+				z-index: -99;
+				opacity: 0;
+				transition: opacity 0.7s;
+			}
+			#addPart>p{
+				/* border: solid; */
+				text-align: center;
+				margin: 10%;
+			}
+			#addPart>p>input{
+				margin-top: 15px;
+				padding: 15px;
+				width: 20vw;
+				
+				outline: none;
+				border: solid 1px rgba(0, 85, 255, 0.6);
+				border-radius: 5px;
+				box-shadow: -1px 1px 5px rgba(0, 85, 255, 0.3),
+					1px 1px 5px rgba(0, 85, 255, 0.3),
+					1px -1px 5px rgba(0, 85, 255, 0.3),
+					-1px -1px 5px rgba(0, 85, 255, 0.3);
+			}
+			.friendList{
+				/* border: solid; */
+			}
+			ul{
+				padding-left: 0px;
+			}
+			li{
+				/* border: solid; */
+				display: flex;
+				justify-content: space-between;
+				padding: 18px;
+				color: #666;
+			}
+			li>button{
+				border: solid 1px #ffffff;
+				box-shadow: 1.5px 1.5px 6.5px #bebebe;
+				border-radius: 0.8vw;
+				background-color: white;
+				color: #666;
+			}
+			.closeNewAddNote{
+				position: absolute;
+				width: 22px;
+				
+				top: 8px;
+				right: 10px;
+			}
+			.friend_area>.row{
+				margin-top: 45px;
+			}
+			
+			.emptyImg{
+				position: fixed;
+				top: 30%;
+				left: 50%;
+				transform: translate(-50%);
+				
+				display: none;
+				/* display: block; */
+			}
+			
+			#returnUp{
+				position: fixed;
+				right: 25px;
+				bottom: 40px;
+			}
+			#returnUp>img{
+				width: 50px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		
+		<section id="main_section">
+			
+			
+			<!-- 标题 部分 -->
+			<div class="container">
+				<p class="titleP">
+					<small>朋友的笔记</small>
+				</p>
+			</div>
+			
+			
+			
+			
+			<!-- 朋友 部分 -->
+			<div class="container">
+				<div class="friend_area">
+					
+					
+					<div class="row">
+						
+						<!-- <div class="col-3">
+							<div class="friendNode">
+								<h4>汤姆</h4>
+							</div>
+						</div> -->
+						
+					</div>
+					
+					
+				</div>
+			</div>
+			
+			
+			
+			
+		</section>
+		
+		
+		
+		
+		<!-- 添加朋友 按钮 -->
+		<div class="addFriendDIV">
+			<img src="img/addFriend.png"/>
+		</div>
+		
+		
+		
+		
+		
+		<!-- 右击 菜单 -->
+		<div id="right_menu">
+			
+			<img src="img/deleteFriend.png"/>
+			<h5>删除好友</h5>
+			
+		</div>
+		
+		
+		
+		<!-- 添加好友 模板 -->
+		<div id="addPart">
+			
+			<p>
+				<input class="searchFriend" type="text" placeholder="搜索 好友名"/>
+			</p>
+			
+			<ul class="friendList">
+				<!-- <li>
+					<span>King</span>
+					<button>添加好友</button>
+				</li> -->
+				<!-- <li>
+					<span>tom</span>
+					<button>添加好友</button>
+				</li> -->
+			</ul>
+			
+			
+			<img class="closeNewAddNote" src="img/close.png"/>
+			
+		</div>
+		
+		
+		
+		
+		<!-- 空啊老表 -->
+		<img class="emptyImg" src="img/emptyNote.png"/>
+		
+		
+		
+		
+		<!-- 返回 上一页 -->
+		<a href="mainPage.php" id="returnUp">
+			<img src="img/returnimg.png"/>
+		</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<script src="Bootstrap5dist/js/bootstrap.bundle.min.js"></script>
+		
+	</body>
+</html>
+
+
+
+<script>
+	
+	
+	$(function(){
+		
+		
+		
+		
+		
+		
+		// 禁用 浏览器 右击事件
+		$(document).contextmenu(function(){
+			return false;
+		})
+		
+		// 页面 鼠标事件
+		$(document).mousedown(function(){
+			
+			// 隐藏 鼠标菜单 (鼠标左击)
+			if( event.which==1 ){
+				$("#right_menu").css({
+					display : "none"
+				})
+				
+				// 清空 右击菜单内容
+				$("#right_menu").empty();
+				
+				console.log("触发页面 左击");
+			}
+			
+		})
+		
+		// 元素 鼠标事件  (设置 "元素" 右击效果)
+		$(".friend_area").on("mousedown",".friendNode",function(event){
+			
+			// 元素 左击
+			if( event.which==1 ){
+				
+				// 阻止 事件冒泡
+				event.stopPropagation();
+				
+				// 获取当前 好友id
+				var getfriendid = $(this).attr("friendid");
+				
+				// 将朋友id，丢入 js的 Cookie中
+				document.cookie = '[{"fid":'+getfriendid+'}]';
+				
+				// 发送 Ajax请求 
+				$.ajax({
+					type : "POST",
+					url : "requestALL_ajax/ReturnNote.php",
+					data : {
+						"SearchValue" : "",
+						"friendid" : getfriendid
+					},
+					success : function(data){
+						console.log( data );
+						
+						window.location.href="friendNotePage.html";
+					}
+				})
+				
+				console.log("元素 左击  "+getfriendid);
+				
+			}
+			
+			// 元素右击
+			if( event.which==3 ){
+				
+				// 清空 右击菜单内容
+				$("#right_menu").empty();
+				
+				// 阻止 事件冒泡
+				event.stopPropagation();
+				
+				//  显示 右击菜单
+				$("#right_menu").css({
+					top : event.pageY,
+					left : event.pageX,
+					display : "block"
+				})
+				
+				// 获得 朋友id
+				var getfriendID = $(this).attr("friendID");
+				
+				// 将朋友id 添加到 右击菜单上
+				$("#right_menu").attr("friendID",getfriendID);
+				
+				// 创建 "元素右击"菜单 内容
+				var elementMenu = $(' <img src="img/deleteFriend.png"/> <h5>删除好友</h5>  ');
+				$("#right_menu").append( elementMenu );
+				
+				console.log("触发元素 右击事件");
+			}
+			
+			
+			
+		})
+		
+		
+		
+		
+		
+		// 添加好友 按钮
+		$(".addFriendDIV").click(function(){
+			
+			document.querySelector("#addPart").style.opacity = 1;
+			document.querySelector("#addPart").style.zIndex = "999";
+			document.querySelector("#main_section").style.WebkitFilter="blur(6px)";
+			document.querySelector("body").style.backgroundColor="rgba(0, 0, 0, 0.3)";
+			
+		})
+		// 关闭 添加朋友 窗口
+		$(".closeNewAddNote").click(function(){
+			document.querySelector("#addPart").style.opacity = 0;
+			document.querySelector("#addPart").style.zIndex = "-999";
+			document.querySelector("#main_section").style.WebkitFilter="blur(0px)";
+			document.querySelector("body").style.backgroundColor="white";
+			
+			// 清空 用户输入 残留
+			$(".searchFriend").val("");
+			
+			// 刷新页面
+			location.reload();
+			
+		})
+		
+		
+		
+		
+		
+		
+		// 搜索好友
+		$(".searchFriend").on("input propertychange",function(){
+			
+			// 清空 旧记录
+			$(".friendList").empty();
+			
+			
+			var getSearchValue = $(".searchFriend").val();
+			
+			// 发送Ajax请求, 查找好友
+			$.ajax({
+				type : "POST",
+				url : "requestALL_ajax/searchFriend.php",
+				data : {
+					"userName" : getSearchValue
+				},
+				success : function(data){
+					// 将 返回的 字符串数据，解析成JSON对象
+					var friendData = window.eval(data);
+					console.log(friendData);
+					var friendCount = friendData.length;
+					
+					var idx=0;
+					// 拼接 好友模块
+					while( friendCount ) {
+						
+						// 模拟 好友                                          将id 绑定到button属性上
+						var friend = $("<li> <span>"+friendData[idx].uname+"</span><button userid="+friendData[idx].id+">添加好友</button> </li>");
+						$(".friendList").append( friend );
+						
+						idx++;
+						friendCount--;
+					}
+					
+					
+					
+					
+					
+					
+				}
+			})
+			
+			
+			
+		})
+		
+		
+		
+		
+		// 添加好友 按钮
+		$(".friendList").on("click","li>button",function(){
+			
+			var getuserid = $(this).attr("userid");
+			
+			// 发送Ajax请求 添加好友
+			$.ajax({
+				type : "POST",
+				url : "requestALL_ajax/addFriend.php",
+				data : {
+					"userid" : getuserid
+				},
+				success : function(data){
+					
+					if( data==1 ){
+						alert("好友添加 成功");
+					}
+					else{
+						alert("好友添加 失败, 可能好友'已经添加'");
+					}
+					
+					
+				}
+			})
+			
+		})
+		
+		
+		
+		
+		// 初次Ajax
+		// $.ajax({
+		// 	type : "POST",
+		// 	url : "requestALL_ajax/addFriend.php",
+		// })
+		
+		
+		
+		// 展示好友
+		$.ajax({
+			type : "POST",
+			url : "requestALL_ajax/showFriend.php",
+			data : {
+				
+			},
+			success : function(data){
+				
+				// 将 返回的 字符串数据，解析成JSON对象
+				var Allfriend = window.eval(data);
+				var friendLength = Allfriend.length;
+				console.log( Allfriend );
+				
+				// 初始的 空图片
+				var initialImg = 1;
+				
+				// 将好友的数据 拼接起来
+				var idx=0;
+				while( friendLength ){
+					
+					var friend_col = $('<div class="col-3">  <div friendID="'+Allfriend[idx].friendID+'" class="friendNode"><h4>'+ Allfriend[idx].friendname +'</h4></div>  </div>');
+					var friend_row = $('<div class="row"></div>')
+					
+					// 判断 一行 可达满 4列
+					var getcolNumber = $(".row").last().children().length;
+					if( getcolNumber<4 ){
+						$(".row").last().append( friend_col );
+					}
+					else{
+						$(".row").last().after( friend_row );
+						$(".row").last().append( friend_col );
+					}
+					
+					idx++;
+					friendLength--;
+					
+					initialImg = 0;
+					
+				}
+				
+				// 空图片 的状态
+				if(initialImg==1){
+					// 显示 空图片
+					document.querySelector(".emptyImg").style.display = "block";
+				}
+				else{
+					// 隐藏 空图片
+					document.querySelector(".emptyImg").style.display = "none";
+				}
+				
+			}
+		})
+		
+		
+		
+		
+		
+		// 删除好友
+		$("body").on("mousedown","#right_menu",function(event){
+			
+			if(event.which==1){
+				
+				var friendID = $(this).attr("friendID");
+				
+				// 删除好友
+				$.ajax({
+					type : "POST",
+					url : "requestALL_ajax/deleteFriend.php",
+					data : {
+						"friend_ID" : friendID
+					},
+					success : function(data){
+						
+						if( data==1 ){
+							alert("删除成功");
+						}
+						else{
+							alert("删除失败");
+						}
+						
+						// 刷新页面
+						location.reload();
+					}
+				})
+				
+			}
+			
+		})
+		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	})
+	
+	
+</script>

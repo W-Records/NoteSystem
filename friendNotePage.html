@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link href="Bootstrap5dist/css/bootstrap.min.css" rel="stylesheet" />
+		<script src="js/jquery-3.6.0.js"></script>
+		
+		<style>
+			
+			body{
+				/* filter: blur(6px);
+				background-color: white; */
+				transition: filter 0.7s, background-color 0.7s;
+			}
+			
+			#main_content_section{
+				/* border: solid #aaaa00; */
+				width: 100%;
+				transition: filter 0.7s, background-color 0.7s;
+			}
+			.container{
+				/* border: solid red; */
+			}
+			.search_content{
+				/* border: solid; */
+				
+				margin-top: 10vh;
+				width: 100%;
+				
+				display: flex;
+				justify-content: center;
+				
+				height: 78px;
+				overflow: hidden;
+				
+				position: relative;
+			}
+			.searchBOX{
+				/* border: solid green; */
+				
+				position: absolute;
+				/* top: -78px; */
+			}
+			.searchBOX>h1{
+				/* border: solid red; */
+				text-align: center;
+				color: #0078d4;
+				font-size: 40px;
+				
+				margin: 0px;
+				padding: 15px 0px 18px 0px;
+				
+				/* transform: rotateX(90deg); */
+				transition: transform 1s;
+			}
+			.searchBOX>input{
+				padding: 15px;
+				width: 350px;
+				
+				outline: none;
+				border: solid 1px rgba(0, 85, 255, 0.6);
+				border-radius: 5px;
+				box-shadow: -1px 1px 5px rgba(0, 85, 255, 0.3),
+					1px 1px 5px rgba(0, 85, 255, 0.3),
+					1px -1px 5px rgba(0, 85, 255, 0.3),
+					-1px -1px 5px rgba(0, 85, 255, 0.3);
+			}
+			
+			
+			
+			
+			
+			
+			.note_area{
+				/* border: red solid; */
+				margin-top: 16vh;
+				
+				width: 100%;
+			}
+			.note_area>.row{
+				margin-top: 45px;
+			}
+			.note_area .col{
+				/* border: solid 1px; */
+			}
+			.smallNode{
+				/* border: solid blue; */
+				border: solid 1px #ffffff;
+				box-shadow: 2.5px 2.5px 6.5px #959595;
+				border-radius: 0.8vw;
+				height: 9vw;
+				
+				background: url("img/notebac01.png") no-repeat ;
+				background-size: 7vw;
+				background-position: 95% 100%;
+			}
+			.smallNode>h4{
+				/* border: solid; */
+				padding-top: 1.2vw;
+				padding-left: 1.8vw;
+				color: #666;
+			}
+			
+			.smallNode>h6{
+				position: absolute;
+				opacity: 0;
+				z-index: -999;
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			#right_menu{
+				border: solid 1px #bfbfbf;
+				background-color: #ffffff;
+				
+				box-shadow: 2.5px 2.5px 6.5px #bebebe;
+				
+				
+				/* display: none; */
+				
+				position: fixed;
+			}
+			#right_menu>img{
+				width: 29px;
+				position: absolute;
+				top: 50%;
+				left: 20px;
+				transform: translate(0px,-50%);
+				
+				z-index: -1;
+			}
+			#right_menu>h5{
+				/* border: solid; */
+				background-color: transparent;
+				color: #666;
+				margin: 0px;
+				padding: 20px;
+				padding-left: 55px;
+			}
+			div[class*="DIVmenu"]{
+				position: relative;
+			}
+			div[class*="DIVmenu"]>img{
+				width: 29px;
+				position: absolute;
+				top: 50%;
+				left: 20px;
+				transform: translate(0px,-50%);
+				
+				z-index: -1;
+			}
+			div[class*="DIVmenu"]>h5{
+				/* border: solid; */
+				background-color: transparent;
+				color: #666;
+				margin: 0px;
+				padding: 20px;
+				padding-left: 55px;
+			}
+			.deleteDIVmenu{
+				/* border-top: solid 1px #bfbfbf; */
+			}
+			
+			
+			
+			
+			
+			
+			#NewAdd_part{
+				border: solid 0.5px;
+				width: 60vw;
+				
+				background-color: white;
+				
+				
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%,-50%);
+				
+				z-index: -99;
+				opacity: 0;
+				transition: opacity 0.7s;
+			}
+			#NewAdd_part>p{
+				/* border: solid #0078d4; */
+				text-align: center;
+				margin: 5%;
+			}
+			#NewAdd_part>p>input{
+				padding: 15px;
+				width: 27vw;
+				
+				outline: none;
+				border: none;
+				border-bottom: solid 1px;
+				
+				text-align: center;
+				font-size: 25px;
+				font-weight: 900;
+			}
+			
+			#NewAdd_part>textarea{
+				width: 100%;
+				height: 60vh;
+				
+				text-indent: 30px;
+				
+				border: none;
+				outline: none;
+			}
+			
+			#NewAdd_part>.operate_img{
+				position: absolute;
+				top: 8px;
+				left: 10px;
+			}
+			.saveNote{
+				width: 35px;
+				margin-right: 8px;
+				
+				z-index: -99;
+				opacity: 0;
+			}
+			.saveNote_node{
+				width: 35px;
+				position: absolute;
+				
+				z-index: -99;
+				opacity: 0;
+			}
+			.imgNote{
+				width: 34px !important;
+			}
+			.closeNewAddNote{
+				position: absolute;
+				width: 35px;
+				
+				top: 8px;
+				right: 10px;
+			}
+			
+			
+			
+			.emptyImg{
+				position: fixed;
+				top: 30%;
+				left: 50%;
+				transform: translate(-50%);
+				
+				display: none;
+				/* display: block; */
+			}
+			
+			
+			
+			#returnUp{
+				position: fixed;
+				right: 25px;
+				bottom: 40px;
+			}
+			#returnUp>img{
+				width: 50px;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		
+		
+		
+		<section id="main_content_section">
+			
+			
+			<!-- 搜索 模块 -->
+			<div class="container">
+				<div class="search_content">
+					
+					<div class="searchBOX">
+						<h1>搜索笔记</h1>
+						
+						<input class="searchInput" type="text" placeholder="搜索笔记 标题"/>
+					</div>
+					
+				</div>
+			</div>
+			
+			
+			
+			
+			
+			
+			<!-- 笔记部分 -->
+			<div class="container">
+				<div class="note_area">
+					
+					
+					<!-- <div class="row">
+						<div class="col-3">
+							<div class="smallNode">
+								<h4>我的笔记</h4>
+							</div>
+						</div>
+					
+						<div class="col-3">
+							<div class="smallNode">
+								<h4>第二啊</h4>
+							</div>
+						</div>
+					</div> -->
+					
+					
+					<div class="row"></div>
+					
+					
+				</div>
+			</div>
+			
+			
+			
+			
+			
+		</section>
+		
+		
+		
+		
+		
+		
+		<!-- 右击 菜单 -->
+		<div id="right_menu">
+			
+			
+			<!-- <img src="img/addNode.png"/>
+			<h5>新建笔记</h5> -->
+			
+			<!-- <div class="editDIVmenu">
+				<img src="img/editNote.png"/>
+				<h5>编辑笔记</h5>
+			</div>
+			
+			<div class="deleteDIVmenu">
+				<img src="img/deleteNote.png"/>
+				<h5>删除笔记</h5>
+			</div> -->
+			
+			
+		</div>
+		
+		
+		
+		
+		<!-- 新建笔记 模板 -->
+		<div id="NewAdd_part">
+			
+			<p>
+				<input class="NoteTitle" type="text" placeholder="标题"/>
+			</p>
+			
+			<textarea class="NoteContent" placeholder="内容"></textarea>
+			
+			
+			<div class="operate_img">
+				<img class="saveNote_node" src="img/saveNote.png"/>
+				<img class="saveNote" src="img/saveNewNode.png"/>
+			</div>
+			<img class="closeNewAddNote" src="img/close.png"/>
+			
+			
+		</div>
+		
+		
+		
+		
+		
+		<!-- 空啊老表 -->
+		<img class="emptyImg" src="img/emptyNote.png"/>
+		
+		
+		
+		<!-- 返回 上一页 -->
+		<a href="friendRelation_page.html" id="returnUp">
+			<img src="img/returnimg.png"/>
+		</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		<script src="Bootstrap5dist/js/bootstrap.bundle.min.js"></script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+<script>
+	
+	
+	
+	$(function(){
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// 关闭 新建笔记 窗口
+		$(".closeNewAddNote").click(function(){
+			document.querySelector("#NewAdd_part").style.opacity = 0;
+			document.querySelector("#NewAdd_part").style.zIndex = "-999";
+			document.querySelector("#main_content_section").style.WebkitFilter="blur(0px)";
+			document.querySelector("body").style.backgroundColor="white";
+			
+			// 清空 用户输入 残留
+			$(".NoteTitle").val("");
+			$(".NoteContent").val("");
+			
+			// 刷新页面
+			location.reload();
+			
+		})
+		
+		
+		
+		
+		
+		
+		
+		
+		// 编辑笔记 按钮
+		$("body").on("mousedown",".editDIVmenu",function(event){
+			
+			if( event.which==1 ){
+				// 阻止 事件冒泡
+				event.stopPropagation();
+				
+				console.log( $(this) );
+				
+				$("#right_menu").css({
+					display : "none"
+				});
+				
+			}
+			
+		})
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// 禁用 浏览器 右击事件
+		$(document).contextmenu(function(){
+			return false;
+		})
+		
+		// 页面 鼠标事件  (设置 "页面" 右击效果)
+		$(document).mousedown(function(event){
+			
+			// 隐藏 鼠标菜单 (鼠标左击)
+			if( event.which==1 ){
+				$("#right_menu").css({
+					display : "none"
+				})
+				
+				// 清空 右击菜单内容
+				$("#right_menu").empty();
+				
+				console.log("触发页面 左击");
+			}
+			
+		})
+		// 元素 鼠标事件  (设置 "元素" 右击效果)
+		$(".note_area").on("mousedown",".smallNode",function(event){
+			
+			// 元素 左击效果，显示内容
+			if( event.which==1 ){
+				// 阻止 事件冒泡
+				event.stopPropagation();
+				
+				document.querySelector("#NewAdd_part").style.opacity = 1;
+				document.querySelector("#NewAdd_part").style.zIndex = "999";
+				document.querySelector("#main_content_section").style.WebkitFilter="blur(6px)";
+				document.querySelector("body").style.backgroundColor="rgba(0, 0, 0, 0.3)";
+				
+				
+				// 将 Noteid，设置成 元素属性
+				var getNoteid = $(this).children("h6").text();
+				console.log( getNoteid );
+				$(".saveNote_node").attr("Noteid",getNoteid);
+				
+				
+				// 获取js Cookie中 的值
+				var getCookie_Value = document.cookie;
+				// 截取 主要数据
+				var startIdx = getCookie_Value.indexOf("[");
+				var lastIdx = getCookie_Value.indexOf("]");
+				
+				var friendId_String = getCookie_Value.substring(startIdx,lastIdx+1);
+				var friendId_OBJ = window.eval( friendId_String );
+				
+				// 获取数据, 左击点开 smallNode 显示内容
+				$.ajax({
+					type : "POST",
+					url : "requestALL_ajax/ReturnNote.php",
+					data : {
+						"SearchValue" : "",
+						"friendid" : friendId_OBJ[0].fid
+					},
+					success : function(data){
+						var NoteData =  window.eval(data);
+						var Notelength = NoteData.length;
+						
+						// 指定的 Noteid
+						var yes_Noteid;
+						var idx = 0;
+						while( Notelength ){
+							
+							if( NoteData[idx].noteid == getNoteid ){
+								yes_Noteid = NoteData[idx];
+							}
+							
+							idx++;
+							Notelength--;
+						}
+						console.log(yes_Noteid);
+						
+						// 解决 回车报错 问题
+						var getNoteContent = yes_Noteid.NoteContent.replace(/>/g,"\n");
+						
+						// 将 指定的数据 填入
+						$(".NoteTitle").val( yes_Noteid.NoteTitle );
+						$(".NoteContent").val( getNoteContent );
+						
+					}
+				})
+				
+				
+				console.log("元素 左击事件");
+			}
+			
+			
+			
+			
+		})
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// 搜索模块 上下动画
+		$(".searchBOX").mouseenter(function(){
+			
+			// 文字翻转 动画
+			document.querySelector(".searchBOX>h1").style.transform = "rotateX(90deg)";
+			
+			$(".searchBOX").stop(true,false).animate({
+				"top" : "-78px"
+			},1000);
+			
+		})
+		$(".searchBOX").mouseleave(function(){
+			
+			// 让 输入框， 失去焦点
+			$(".searchBOX>input").blur();
+			
+			// 判断 输入框， 是否有 数据
+			var getValue = $(".searchBOX>input").val();
+			if( getValue=="" ){
+				
+				// 文字翻转 动画
+				document.querySelector(".searchBOX>h1").style.transform = "rotateX(0deg)";
+				
+				$(".searchBOX").stop(true,false).animate({
+					"top" : 0
+				},1000);
+				
+			}
+			
+		})
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		// 拼接 笔记模块
+		
+		// 获取 搜索框的 值
+		var getSearchValue = $(".searchInput").val();
+		console.log( getSearchValue );
+		
+		// 获取js Cookie中 的值
+		var getCookie_Value = document.cookie;
+		// 截取 主要数据
+		var startIdx = getCookie_Value.indexOf("[");
+		var lastIdx = getCookie_Value.indexOf("]");
+		
+		var friendId_String = getCookie_Value.substring(startIdx,lastIdx+1);
+		var friendId_OBJ = window.eval( friendId_String );
+		
+		// 初次 Ajax
+		$.ajax({
+			type : "POST",
+			url : "requestALL_ajax/ReturnNote.php",
+			data : {
+				"SearchValue" : getSearchValue,
+				"friendid" : friendId_OBJ[0].fid
+			},
+			success : function(data){
+				// 将 返回的 字符串数据，解析成JSON对象
+				var NoteData =  window.eval(data);
+				console.log( NoteData );
+				var Notelength = NoteData.length;
+				
+				// 初始的 空图片
+				var initialImg = 1;
+				
+				var idx=0;
+				// 拼接 笔记模块
+				while(Notelength){
+					
+					// 模拟 HTML笔记内容
+					var createNote_col = $(' <div class="col-3"> <div class="smallNode"><h4>'+ NoteData[idx].NoteTitle +'</h4><h6>'+ NoteData[idx].noteid +'</h6></div> </div> ');
+					var createNote_row = $(' <div class="row"></div> ');
+					
+					// 判断 一行 可达满 4列
+					var getcolNumber = $(".row").last().children().length;
+					if( getcolNumber<4 ){
+						$(".row").last().append( createNote_col );
+					}
+					else{
+						$(".row").last().after( createNote_row );
+						$(".row").last().append( createNote_col );
+					}
+					
+					idx++;
+					Notelength--;
+					
+					initialImg = 0;
+				}
+				
+				// 空图片 的状态
+				if(initialImg==1){
+					// 显示 空图片
+					document.querySelector(".emptyImg").style.display = "block";
+				}
+				else{
+					// 隐藏 空图片
+					document.querySelector(".emptyImg").style.display = "none";
+				}
+				
+			}
+		})
+		
+		
+		// 搜索 笔记
+		$(".searchInput").on("input propertychange",function(){
+			
+			// 控制 空图片
+			var emptyImg_flag = 1;
+			
+			// 清空 旧记录
+			$(".note_area").empty();
+			var initial_row = $(' <div class="row"></div> ');
+			$(".note_area").append( initial_row );
+			
+			var getSearchValue = $(".searchInput").val();
+			console.log( getSearchValue );
+			
+			// 发送 Ajax请求
+			$.ajax({
+				type : "POST",
+				url : "requestALL_ajax/ReturnNote.php",
+				data : {
+					"SearchValue" : getSearchValue,
+					"friendid" : friendId_OBJ[0].fid
+				},
+				success : function(data){
+					// 将 返回的 字符串数据，解析成JSON对象
+					var NoteData =  window.eval(data);
+					console.log( NoteData );
+					var Notelength = NoteData.length;
+					
+					var idx=0;
+					// 拼接 笔记模块
+					while(Notelength){
+						
+						// 模拟 HTML笔记内容
+						var createNote_col = $(' <div class="col-3"> <div class="smallNode"><h4>'+ NoteData[idx].NoteTitle +'</h4><h6>'+ NoteData[idx].noteid +'</h6></div> </div> ');
+						var createNote_row = $(' <div class="row"></div> ');
+						
+						// 判断 一行 可达满 4列
+						var getcolNumber = $(".row").last().children().length;
+						if( getcolNumber<4 ){
+							$(".row").last().append( createNote_col );
+						}
+						else{
+							$(".row").last().after( createNote_row );
+							$(".row").last().append( createNote_col );
+						}
+						
+						idx++;
+						Notelength--;
+						
+						emptyImg_flag = 0;
+					}
+					
+					// 空图片 的状态
+					if(emptyImg_flag==1){
+						// 显示 空图片
+						document.querySelector(".emptyImg").style.display = "block";
+					}
+					else{
+						// 隐藏 空图片
+						document.querySelector(".emptyImg").style.display = "none";
+					}
+					
+				}
+			})
+			
+			
+			
+		})
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	})
+	
+	
+	
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <link href="requestALL_ajax/test路径.css"/> -->

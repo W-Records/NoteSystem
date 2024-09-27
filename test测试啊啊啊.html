@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<h1>儿子</h1>
+	</body>
+</html>
+
+<script>
+	
+	// 获取js Cookie中 的值
+	var getCookie_Value = document.cookie;
+	console.log( getCookie_Value );
+	
+	
+	// 截取 主要数据
+	var startIdx = getCookie_Value.indexOf("[");
+	var lastIdx = getCookie_Value.indexOf("]");
+	console.log(  startIdx );
+	console.log(  lastIdx );
+	
+	var friendId_String = getCookie_Value.substring(startIdx,lastIdx+1);
+	console.log(  friendId_String );
+	
+	var friendId_OBJ = window.eval( friendId_String );
+	console.log(  friendId_OBJ );
+	console.log( friendId_OBJ[0].fid );
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// var getCookie_Value = document.cookie;
+	
+	// console.log(  getCookie_Value );
+	
+	
+	
+	// var startIdx = getCookie_Value.indexOf("[");
+	// var lastIdx = getCookie_Value.indexOf("]");
+	
+	// console.log(  startIdx );
+	// console.log(  lastIdx );
+	
+	// console.log( getCookie_Value.substring(startIdx,lastIdx+1) );
+	
+	// console.log( window.eval( getCookie_Value.substring(startIdx,lastIdx+1) ) )
+</script>
+
+ <!-- kd2dnt29funu42cr1sisu5tt02 -->
+ <!-- n55f8sj57jbb82shno0j450imk -->
+ <!-- n55f8sj57jbb82shno0j450imk -->
+ <!-- octfid625o0lgblst63sabj0ho -->
